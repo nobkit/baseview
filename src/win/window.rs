@@ -5,18 +5,7 @@ use winapi::um::combaseapi::CoCreateGuid;
 use winapi::um::ole2::{OleInitialize, RegisterDragDrop, RevokeDragDrop};
 use winapi::um::oleidl::LPDROPTARGET;
 use winapi::um::winuser::{
-    AdjustWindowRectEx, CreateWindowExW, DefWindowProcW, DestroyWindow, DispatchMessageW,
-    GetDpiForWindow, GetFocus, GetMessageW, GetWindowLongPtrW, LoadCursorW, PostMessageW,
-    RegisterClassW, ReleaseCapture, SetCapture, SetCursor, SetFocus, SetProcessDpiAwarenessContext,
-    SetTimer, SetWindowLongPtrW, SetWindowPos, TrackMouseEvent, TranslateMessage, UnregisterClassW,
-    CS_OWNDC, GET_XBUTTON_WPARAM, GWLP_USERDATA, HTCLIENT, IDC_ARROW, MSG, SWP_NOMOVE,
-    SWP_NOZORDER, TRACKMOUSEEVENT, WHEEL_DELTA, WM_CHAR, WM_CLOSE, WM_CREATE, WM_DPICHANGED,
-    WM_INPUTLANGCHANGE, WM_KEYDOWN, WM_KEYUP, WM_LBUTTONDOWN, WM_LBUTTONUP, WM_MBUTTONDOWN,
-    WM_MBUTTONUP, WM_MOUSEHWHEEL, WM_MOUSELEAVE, WM_MOUSEMOVE, WM_MOUSEWHEEL, WM_NCDESTROY,
-    WM_RBUTTONDOWN, WM_RBUTTONUP, WM_SETCURSOR, WM_SHOWWINDOW, WM_SIZE, WM_SYSCHAR, WM_SYSKEYDOWN,
-    WM_SYSKEYUP, WM_TIMER, WM_USER, WM_XBUTTONDOWN, WM_XBUTTONUP, WNDCLASSW, WS_CAPTION, WS_CHILD,
-    WS_CLIPSIBLINGS, WS_MAXIMIZEBOX, WS_MINIMIZEBOX, WS_POPUPWINDOW, WS_SIZEBOX, WS_VISIBLE,
-    XBUTTON1, XBUTTON2,
+    AdjustWindowRectEx, CreateWindowExW, DefWindowProcW, DestroyWindow, DispatchMessageW, GetDpiForWindow, GetFocus, GetMessageW, GetWindowLongPtrW, LoadCursorW, PostMessageW, RegisterClassW, ReleaseCapture, SetCapture, SetCursor, SetFocus, SetProcessDpiAwarenessContext, SetTimer, SetWindowLongPtrW, SetWindowPos, TrackMouseEvent, TranslateMessage, UnregisterClassW, CS_OWNDC, GET_XBUTTON_WPARAM, GWLP_USERDATA, HTCLIENT, HWND_TOPMOST, IDC_ARROW, MSG, SWP_NOMOVE, SWP_NOZORDER, TRACKMOUSEEVENT, WHEEL_DELTA, WM_CHAR, WM_CLOSE, WM_CREATE, WM_DPICHANGED, WM_INPUTLANGCHANGE, WM_KEYDOWN, WM_KEYUP, WM_LBUTTONDOWN, WM_LBUTTONUP, WM_MBUTTONDOWN, WM_MBUTTONUP, WM_MOUSEHWHEEL, WM_MOUSELEAVE, WM_MOUSEMOVE, WM_MOUSEWHEEL, WM_NCDESTROY, WM_RBUTTONDOWN, WM_RBUTTONUP, WM_SETCURSOR, WM_SHOWWINDOW, WM_SIZE, WM_SYSCHAR, WM_SYSKEYDOWN, WM_SYSKEYUP, WM_TIMER, WM_USER, WM_XBUTTONDOWN, WM_XBUTTONUP, WNDCLASSW, WS_CAPTION, WS_CHILD, WS_CLIPSIBLINGS, WS_MAXIMIZEBOX, WS_MINIMIZEBOX, WS_POPUPWINDOW, WS_SIZEBOX, WS_VISIBLE, XBUTTON1, XBUTTON2
 };
 
 use std::cell::{Cell, Ref, RefCell, RefMut};
@@ -775,7 +764,7 @@ impl Window<'_> {
                 // which we can then send the user the new scale factor.
                 SetWindowPos(
                     hwnd,
-                    hwnd,
+                    HWND_TOPMOST,
                     new_rect.left,
                     new_rect.top,
                     new_rect.right - new_rect.left,
